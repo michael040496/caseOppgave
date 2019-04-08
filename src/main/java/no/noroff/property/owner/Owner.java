@@ -1,10 +1,12 @@
 package no.noroff.property.owner;
 
 import lombok.Data;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,5 +22,7 @@ public class Owner implements Serializable {
     private LocalDateTime date_of_birth;
     private int d_number;
     private LocalDateTime created_at;
+
+
 
 }
