@@ -1,7 +1,8 @@
 package no.noroff.property.owner.owner_type;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class OwnerTypeRepository {
+interface OwnerTypeRepository extends JpaRepository<OwnerType, Integer> {
 }
