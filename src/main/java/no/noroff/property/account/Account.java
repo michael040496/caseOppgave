@@ -3,6 +3,7 @@ package no.noroff.property.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import no.noroff.property.account.account_type.AccountType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,6 +45,16 @@ public class Account implements Serializable {
 
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
+
+    @Column(name = "account_type_id")
+    private int account_type_id;
+
+    @ManyToOne
+    @JoinTable(
+            name="account_type",
+            joinColumns=@JoinColumn(name="account_type_id"),
+            inverseJoinColumns=@JoinColumn(name="account_type_id"))
+    private AccountType accountType;
 
     public Account(){
 
