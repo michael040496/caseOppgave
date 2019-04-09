@@ -2,6 +2,7 @@ package no.noroff.property.valuation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import no.noroff.property.property.Property;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,13 @@ public class Valuation {
 
     @Column(name="property_id")
     private int property_id;
+
+    @ManyToOne
+    @JoinTable(name = "property",
+            joinColumns = {@JoinColumn(name = "property_id")},
+            inverseJoinColumns = {@JoinColumn(name =  "property_id")})
+    private Property property;
+
 
     public Valuation(){
 
