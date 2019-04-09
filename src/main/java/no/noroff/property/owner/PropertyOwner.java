@@ -6,9 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Data
 @Table(name = "owner")
 public class PropertyOwner implements Serializable {
     @Id

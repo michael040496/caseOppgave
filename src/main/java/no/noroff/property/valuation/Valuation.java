@@ -28,4 +28,8 @@ public class Valuation {
 
     @Column(name="property_id")
     private int property_id;
+
+    public Valuation(){
+
+    }
 }

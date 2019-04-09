@@ -16,5 +16,7 @@ public class OwnerType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int owner_type_id;
+
+    @Column
     private String name;
 }

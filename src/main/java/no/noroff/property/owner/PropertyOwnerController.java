@@ -32,6 +32,7 @@ public class PropertyOwnerController {
     @PostMapping("/owner")
     public ResponseEntity<PropertyOwner> addOwner(PropertyOwner propertyOwner) {
         try{
+
             propertyOwnerRepository.save(propertyOwner);
             return new ResponseEntity<>(propertyOwner, HttpStatus.OK);
         }

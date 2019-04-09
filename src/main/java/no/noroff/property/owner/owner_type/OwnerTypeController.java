@@ -1,9 +1,45 @@
 package no.noroff.property.owner.owner_type;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class OwnerTypeController {
+
+    @Autowired
+    private OwnerTypeRepository ownerTypeRepository;
+
+    @GetMapping("/ownertype")
+    public ResponseEntity<List<OwnerType>> getAll(){
+        try{
+            List<OwnerType> ownerTypes = ownerTypeRepository.findAll();
+            return new ResponseEntity<>(ownerTypes, HttpStatus.OK);
+        }
+        catch(DataAccessException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
+    }
+
+    @PostMapping("/ownertype")
+    public ResponseEntity<OwnerType> addOwnerType(@RequestBody OwnerType ownerType){
+        try{
+            ownerTypeRepository.save(ownerType);
+            return new ResponseEntity<>(ownerType, HttpStatus.OK);
+        }
+
+        catch(DataAccessException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 }
