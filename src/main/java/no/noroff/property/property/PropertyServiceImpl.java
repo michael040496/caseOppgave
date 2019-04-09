@@ -9,12 +9,7 @@ import java.util.List;
 public class PropertyServiceImpl implements PropertyService {
 
     @Autowired
-    private final PropertyRepository propertyRepository;
-
-    @Autowired
-    public PropertyServiceImpl(PropertyRepository propertyRepository) {
-        this.propertyRepository = propertyRepository;
-    }
+    private PropertyRepository propertyRepository;
 
     @Override
     public List<Property> findAll() {
@@ -26,5 +21,8 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyRepository.save(property);
     }
 
-
+    @Override
+    public Property getPropertyById(int id) {
+        return null;
+    }
 }

@@ -1,6 +1,5 @@
 package no.noroff.property.property;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "property")
 public class Property implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "property_id")
