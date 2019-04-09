@@ -1,9 +1,12 @@
 package no.noroff.property.owner.ownership_log;
 
 import lombok.Data;
+import no.noroff.property.owner.PropertyOwner;
+import no.noroff.property.property.Property;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.acl.Owner;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,10 +29,22 @@ public class OwnershipLog implements Serializable {
     private LocalDateTime created_at;
 
     @Column
-    private int property_id;
+    private int owner_id;
 
     @Column
-    private int owner_id;
+    private int property_id;
+
+    @ManyToOne
+    @JoinTable(
+            name="owner",
+            joinColumns=@JoinColumn(name="owner_id"))
+    private PropertyOwner propertyOwner;
+
+    @ManyToOne
+    @JoinTable(
+            name="property",
+            joinColumns=@JoinColumn(name="property_id"))
+    private Property property;
 
     public OwnershipLog(){
 
