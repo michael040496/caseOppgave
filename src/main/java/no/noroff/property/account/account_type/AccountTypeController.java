@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class AccountTypeController {
     }
 
     @PostMapping("/accounttype")
-    public ResponseEntity<AccountType> addAccountType(AccountType accountType) {
+    public ResponseEntity<AccountType> addAccountType(@RequestBody AccountType accountType) {
         try{
             accountTypeRepository.save(accountType);
             return new ResponseEntity<>(accountType, HttpStatus.OK);
