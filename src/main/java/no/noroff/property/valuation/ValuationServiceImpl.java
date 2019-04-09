@@ -10,11 +10,11 @@ import java.util.List;
 public class ValuationServiceImpl implements ValuationService {
 
     @Autowired
-    private final ValuationRepository valuationRepository;
+    private ValuationRepository valuationRepository;
 
-    @Autowired
-    public ValuationServiceImpl(ValuationRepository valuationRepository){
-        this.valuationRepository = valuationRepository;
+    @Override
+    public Valuation createValuation(Valuation valuation){
+        return valuationRepository.save(valuation);
     }
 
     @Override
@@ -22,9 +22,6 @@ public class ValuationServiceImpl implements ValuationService {
         return valuationRepository.findAll();
     }
 
-    @Override
-    public Valuation createValuation(Valuation valuation){
-        return valuationRepository.save(valuation);
-    }
+
 
 }
