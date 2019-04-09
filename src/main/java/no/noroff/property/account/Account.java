@@ -52,8 +52,7 @@ public class Account implements Serializable {
     @ManyToOne
     @JoinTable(
             name="account_type",
-            joinColumns=@JoinColumn(name="account_type_id"),
-            inverseJoinColumns=@JoinColumn(name="account_type_id"))
+            joinColumns=@JoinColumn(name="account_type_id"))
     private AccountType accountType;
 
     public Account(){
