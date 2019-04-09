@@ -11,6 +11,9 @@ import java.io.Serializable;
 public class PropertyStatus implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "property_status_id")
     private int property_status_id;
-    private String name;
+
+    @Column(name = "property_status_name")
+    private String property_status_name;
 }

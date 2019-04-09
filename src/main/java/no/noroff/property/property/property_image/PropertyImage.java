@@ -11,7 +11,12 @@ import java.io.Serializable;
 public class PropertyImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "property_image_id")
     private int property_image_id;
+
+    @Column(name = "url")
     private String url;
+
+    @Column(name = "property_id")
     private int property_id;
 }
