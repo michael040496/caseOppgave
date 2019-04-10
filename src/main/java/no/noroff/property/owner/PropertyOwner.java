@@ -42,13 +42,6 @@ public class PropertyOwner implements Serializable {
     @Column(name="owner_type_id")
     private int owner_type_id;
 
-    @ManyToOne
-    @JoinTable(
-            name="owner_type",
-            joinColumns=@JoinColumn(name="owner_type_id"),
-            inverseJoinColumns=@JoinColumn(name="owner_type_id"))
-    private OwnerType ownerType;
-
     public PropertyOwner(){
 
     }

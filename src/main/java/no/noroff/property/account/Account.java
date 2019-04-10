@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -38,7 +39,7 @@ public class Account implements Serializable {
     private LocalDate dateOfBirth;
 
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
 
     @Column(name = "password")
     private String password;
@@ -46,15 +47,10 @@ public class Account implements Serializable {
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
 
-    @Column(name = "account_type_id")
-    private int account_type_id;
-
-    @ManyToOne
-    @JoinTable(
-            name="account_type",
-            joinColumns=@JoinColumn(name="account_type_id"),
-            inverseJoinColumns=@JoinColumn(name="account_type_id"))
+    @ManyToOne()
+    @JoinColumn(name="account_type_id", nullable=false)
     private AccountType accountType;
+
 
     public Account(){
 

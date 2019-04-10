@@ -27,15 +27,9 @@ public class Valuation {
     @Column(name="valuation_date")
     private LocalDateTime valuation_date;
 
-    @Column(name="property_id")
-    private int property_id;
-
-    @ManyToOne
-    @JoinTable(name = "property",
-            joinColumns = {@JoinColumn(name = "property_id")},
-            inverseJoinColumns = {@JoinColumn(name =  "property.property_id")})
+    @ManyToOne()
+    @JoinColumn(name="property_id", nullable=false)
     private Property property;
-
 
     public Valuation(){
 

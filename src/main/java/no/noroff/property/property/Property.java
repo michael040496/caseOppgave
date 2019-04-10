@@ -41,25 +41,13 @@ public class Property implements Serializable {
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
 
-    @Column(name = "status_id")
-    private int status_id;
-
-    @Column(name = "property_type_id")
-    private int property_type_id;
-
-    @ManyToOne
-    @JoinTable(name = "property_status",
-                joinColumns = {@JoinColumn(name = "status_id")},
-                inverseJoinColumns = {@JoinColumn(name =  "property_status.property_status_id")})
+    @ManyToOne()
+    @JoinColumn(name="status_id", nullable=false)
     private PropertyStatus propertyStatus;
 
-    @ManyToOne
-    @JoinTable(name = "property_type",
-                joinColumns = {@JoinColumn(name = "property_type_id")},
-                inverseJoinColumns = {@JoinColumn(name = "property_type.property_type_id")})
+    @ManyToOne()
+    @JoinColumn(name="property_type_id", nullable=false)
     private PropertyType propertyType;
-
-
 
 
     public Property() {
