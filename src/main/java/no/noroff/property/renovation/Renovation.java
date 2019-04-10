@@ -29,11 +29,6 @@ public class Renovation implements Serializable {
     @Column(name="property_id")
     private int property_id;
 
-    @ManyToOne
-    @JoinTable(name = "property",
-            joinColumns = {@JoinColumn(name = "property_id")},
-            inverseJoinColumns = {@JoinColumn(name =  "property_id")})
-    private Property property;
 
     public Renovation(){
 

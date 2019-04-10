@@ -47,18 +47,6 @@ public class Property implements Serializable {
     @Column(name = "property_type_id")
     private int property_type_id;
 
-    @ManyToOne
-    @JoinTable(name = "property_status",
-                joinColumns = {@JoinColumn(name = "status_id")},
-                inverseJoinColumns = {@JoinColumn(name =  "status_id")})
-    private PropertyStatus propertyStatus;
-
-    @ManyToOne
-    @JoinTable(name = "property_type",
-                joinColumns = {@JoinColumn(name = "property_type_id")},
-                inverseJoinColumns = {@JoinColumn(name = "property_type_id")})
-    private PropertyType propertyType;
-
 
 
 

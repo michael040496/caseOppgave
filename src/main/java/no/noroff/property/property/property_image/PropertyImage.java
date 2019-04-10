@@ -21,10 +21,4 @@ public class PropertyImage implements Serializable {
     @Column(name = "property_id")
     private int property_id;
 
-    @OneToMany
-    @JoinTable(name = "property",
-            joinColumns = {@JoinColumn(name = "property_id")},
-            inverseJoinColumns = {@JoinColumn(name =  "property_id")})
-    private Property property;
-
 }

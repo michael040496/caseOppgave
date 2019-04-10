@@ -14,12 +14,23 @@ public class AccountServiceImpl implements AccountSerivce{
     private AccountRepository accountRepository;
 
     @Override
-    public Account createAccount(Account account) {
-        return accountRepository.save(account);
+    public List<Account> findAll() {
+        return accountRepository.findAll();
     }
 
     @Override
-    public List<Account> findAll() {
-        return accountRepository.findAll();
+    public Account create(Account object) {
+        return accountRepository.save(object);
+    }
+
+    @Override
+    public Account getById(int id) {
+        return accountRepository.getOne(id);
+    }
+
+    @Override
+    public Account update(int id, Account object) {
+        object.setId(id);
+        return accountRepository.save(object);
     }
 }

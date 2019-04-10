@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface AccountSerivce {
     List<Account> findAll();
-    Account createAccount(Account account);
+    Account create(Account object);
+    Account update(int id, Account object);
+    Account getById(int id);
+
 }
