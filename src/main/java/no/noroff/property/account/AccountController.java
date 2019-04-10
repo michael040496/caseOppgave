@@ -38,11 +38,10 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/account")
+    @PutMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
             accountService.create(account);
-
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
