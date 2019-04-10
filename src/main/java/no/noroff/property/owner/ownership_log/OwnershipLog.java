@@ -6,7 +6,6 @@ import no.noroff.property.property.Property;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.security.acl.Owner;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,12 +27,13 @@ public class OwnershipLog implements Serializable {
     @Column
     private LocalDateTime created_at;
 
-    @Column
-    private int owner_id;
+    @ManyToOne()
+    @JoinColumn(name="owner_id", nullable=false)
+    private PropertyOwner propertyOwner;
 
-    @Column
-    private int property_id;
-
+    @ManyToOne()
+    @JoinColumn(name="property_id", nullable=false)
+    private Property property;
 
     public OwnershipLog(){
 

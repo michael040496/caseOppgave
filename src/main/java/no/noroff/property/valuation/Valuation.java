@@ -17,7 +17,6 @@ public class Valuation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int valuation_id;
 
-
     @Column(name="comments")
     private String comments;
 
@@ -27,8 +26,9 @@ public class Valuation {
     @Column(name="valuation_date")
     private LocalDateTime valuation_date;
 
-    @Column(name="property_id")
-    private int property_id;
+    @ManyToOne()
+    @JoinColumn(name="property_id", nullable=false)
+    private Property property;
 
     public Valuation(){
 

@@ -18,7 +18,9 @@ public class PropertyImage implements Serializable {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "property_id")
-    private int property_id;
+    @ManyToOne()
+    @JoinColumn(name="property_id", nullable=false)
+    private Property property;
+
 
 }

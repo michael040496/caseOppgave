@@ -26,8 +26,11 @@ public class Renovation implements Serializable {
     @Column(name="date_to")
     private LocalDateTime date_to;
 
-    @Column(name="property_id")
-    private int property_id;
+    @ManyToOne()
+    @JoinColumn(name="property_id", nullable=false)
+    private Property property;
+
+
 
 
     public Renovation(){

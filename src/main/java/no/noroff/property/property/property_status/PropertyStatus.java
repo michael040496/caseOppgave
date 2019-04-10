@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Data
 @Table(name = "property_status")
 public class PropertyStatus implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "property_status_id")
