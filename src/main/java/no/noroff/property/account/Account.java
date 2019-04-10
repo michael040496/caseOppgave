@@ -48,9 +48,12 @@ public class Account implements Serializable {
     private LocalDateTime created_at = LocalDateTime.now();
 
 
+    @Column(name = "account_type_id")
+    private int accountTypeId;
+
 
     @ManyToOne()
-    @JoinColumn(name="account_type_id", nullable=false)
+    @JoinColumn(name="account_type_id", nullable=false, insertable = false, updatable = false)
     private AccountType accountType;
 
 
