@@ -22,7 +22,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property getPropertyById(int id) {
-        return null;
+    public Property getPropertyById(int property_id) {
+        return propertyRepository.getOne(property_id);
     }
 }
