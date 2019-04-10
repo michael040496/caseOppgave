@@ -24,12 +24,12 @@ public class PropertyController {
         }
     }
 
-    @GetMapping("/properties/{id}")
-    public ResponseEntity<Property> loadOne(@PathVariable int id){
+    @GetMapping("/properties/{property_id}")
+    public ResponseEntity<Property> loadOne(@PathVariable int property_id){
         try{
-            Property property = propertyService.getPropertyById(id);
+            Property property = propertyService.getPropertyById(property_id);
             return new ResponseEntity<>(property, HttpStatus.ACCEPTED);
-        }catch(DataAccessException e){
+        } catch (DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
