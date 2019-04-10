@@ -39,7 +39,7 @@ public class Account implements Serializable {
     private LocalDate dateOfBirth;
 
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
 
     @Column(name = "password")
     private String password;
