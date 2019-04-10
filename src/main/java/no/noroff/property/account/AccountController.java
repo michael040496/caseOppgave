@@ -28,7 +28,7 @@ public class AccountController {
         }
     }
 
-    @PostMapping("/account")
+    @PostMapping("/account/create")
     public ResponseEntity<Account> create(@RequestBody Account account){
         try{
             accountService.create(account);
@@ -38,11 +38,12 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/account/update")
+    @PostMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
-            accountService.create(account);
-            return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+           Account acc = accountService.getById(account.getId());
+            System.out.println(acc);
+            return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
