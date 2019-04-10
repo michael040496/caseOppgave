@@ -15,6 +15,11 @@ import java.io.Serializable;
 @Table(name = "session")
 public class Session implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int session_id;
+
+
     @Column(name = "token")
     private String token;
 
