@@ -41,13 +41,13 @@ public class Property implements Serializable {
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
 
-    @Column(name = "status_id")
-    private int status_id;
+    @ManyToOne()
+    @JoinColumn(name="status_id", nullable=false)
+    private PropertyStatus propertyStatus;
 
-    @Column(name = "property_type_id")
-    private int property_type_id;
-
-
+    @ManyToOne()
+    @JoinColumn(name="property_type_id", nullable=false)
+    private PropertyType propertyType;
 
 
     public Property() {
