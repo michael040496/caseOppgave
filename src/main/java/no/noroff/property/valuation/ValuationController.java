@@ -13,12 +13,12 @@ import java.util.List;
 public class ValuationController {
 
     @Autowired
-    private ValuationRepository valuationRepository;
+    private ValuationService valuationService;
 
     @GetMapping ("/valuation")
     public ResponseEntity<List<Valuation>> getAll(){
         try{
-             List<Valuation> valuation = valuationRepository.findAll();
+             List<Valuation> valuation = valuationService.findAll();
              return new ResponseEntity<>(valuation, HttpStatus.OK);
         }
         catch(DataAccessException e){
@@ -30,7 +30,7 @@ public class ValuationController {
     @PostMapping("/valuation")
     public ResponseEntity<Valuation> addValuation(@RequestBody Valuation valuation){
         try{
-          valuationRepository.save(valuation);
+          valuationService.createValuation(valuation);
           return new ResponseEntity<>(valuation, HttpStatus.OK);
         }
 

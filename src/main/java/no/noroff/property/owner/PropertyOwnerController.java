@@ -16,12 +16,12 @@ import java.util.List;
 public class PropertyOwnerController {
 
     @Autowired
-    private PropertyOwnerRepository propertyOwnerRepository;
+    private PropertyOwnerService propertyOwnerService;
 
     @GetMapping("/owner")
     public ResponseEntity<List<PropertyOwner>> getAll(){
         try{
-           List<PropertyOwner> propertyOwner = propertyOwnerRepository.findAll();
+           List<PropertyOwner> propertyOwner = propertyOwnerService.findAll();
            return new ResponseEntity<>(propertyOwner, HttpStatus.OK);
         }
         catch(DataAccessException e){
@@ -34,7 +34,7 @@ public class PropertyOwnerController {
     public ResponseEntity<PropertyOwner> addOwner(@RequestBody PropertyOwner propertyOwner) {
         try{
 
-            propertyOwnerRepository.save(propertyOwner);
+            propertyOwnerService.createOwner(propertyOwner);
             return new ResponseEntity<>(propertyOwner, HttpStatus.OK);
         }
 

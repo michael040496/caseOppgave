@@ -15,12 +15,12 @@ import java.util.List;
 public class OwnerTypeController {
 
     @Autowired
-    private OwnerTypeRepository ownerTypeRepository;
+    private OwnerTypeService ownerTypeService;
 
     @GetMapping("/ownertype")
     public ResponseEntity<List<OwnerType>> getAll(){
         try{
-            List<OwnerType> ownerTypes = ownerTypeRepository.findAll();
+            List<OwnerType> ownerTypes = ownerTypeService.findAll();
             return new ResponseEntity<>(ownerTypes, HttpStatus.OK);
         }
         catch(DataAccessException e){
@@ -32,7 +32,7 @@ public class OwnerTypeController {
     @PostMapping("/ownertype")
     public ResponseEntity<OwnerType> addOwnerType(@RequestBody OwnerType ownerType){
         try{
-            ownerTypeRepository.save(ownerType);
+            ownerTypeService.createOwnerType(ownerType);
             return new ResponseEntity<>(ownerType, HttpStatus.OK);
         }
 

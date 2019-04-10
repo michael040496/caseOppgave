@@ -15,12 +15,12 @@ import java.util.List;
 @RestController
 public class AccountTypeController {
     @Autowired
-    private AccountTypeRepository accountTypeRepository;
+    private AccountTypeService accountTypeService;
 
     @GetMapping("/accounttype")
     public ResponseEntity<List<AccountType>> getAll(){
         try{
-            List<AccountType> accountType = accountTypeRepository.findAll();
+            List<AccountType> accountType = accountTypeService.findAll();
             return new ResponseEntity<>(accountType, HttpStatus.OK);
         }
         catch(DataAccessException e){
@@ -32,7 +32,7 @@ public class AccountTypeController {
     @PostMapping("/accounttype")
     public ResponseEntity<AccountType> addAccountType(@RequestBody AccountType accountType) {
         try{
-            accountTypeRepository.save(accountType);
+            accountTypeService.createAccountType(accountType);
             return new ResponseEntity<>(accountType, HttpStatus.OK);
         }
 
