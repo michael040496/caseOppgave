@@ -15,18 +15,20 @@ public class AccountController {
     @Autowired
     private AccountSerivce accountService;
 
-
     @GetMapping("/account")
     public ResponseEntity<List<Account>> getAll() {
         try {
             List<Account> account = accountService.findAll();
+            for (Account acc : account) {
+                System.out.println(acc.toString());
+            }
             return new ResponseEntity<>(account, HttpStatus.OK);
         } catch (DataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PostMapping("/account")
+    @PostMapping("/account/create")
     public ResponseEntity<Account> create(@RequestBody Account account){
         try{
             accountService.create(account);
@@ -36,12 +38,12 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/account")
+    @PostMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
-            accountService.create(account);
-
-            return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+           Account acc = accountService.getById(account.getId());
+            System.out.println(acc);
+            return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -51,6 +53,7 @@ public class AccountController {
     public ResponseEntity<Account> loadOne(@PathVariable int id){
         try{
             Account account = accountService.getById(id);
+            System.out.println(account.toString());
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
