@@ -17,7 +17,6 @@ public class Valuation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int valuation_id;
 
-
     @Column(name="comments")
     private String comments;
 
