@@ -20,7 +20,7 @@ public class Renovation implements Serializable {
     @Column(name="description")
     private String description;
 
-    @Column(name="date_form")
+    @Column(name="date_from")
     private LocalDateTime date_from;
 
     @Column(name="date_to")

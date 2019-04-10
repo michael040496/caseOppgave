@@ -16,12 +16,12 @@ import java.util.List;
 public class RenovationController {
 
     @Autowired
-    private RenovationRepository renovationRepository;
+    private RenovationService renovationService;
 
     @GetMapping("/renovation")
     public ResponseEntity<List<Renovation>> getAll(){
         try{
-           List<Renovation> renovation = renovationRepository.findAll();
+           List<Renovation> renovation = renovationService.findAll();
             return new ResponseEntity<>(renovation, HttpStatus.OK);
         }
         catch(DataAccessException e){
@@ -32,7 +32,7 @@ public class RenovationController {
     @PostMapping("/renovation")
     public ResponseEntity<Renovation> addRenovation(@RequestBody Renovation renovation){
         try{
-            renovationRepository.save(renovation);
+            renovationService.createRenovation(renovation);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         catch(DataAccessException e){
