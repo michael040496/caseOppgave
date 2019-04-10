@@ -15,11 +15,16 @@ public class AccountController {
     @Autowired
     private AccountSerivce accountService;
 
+    @Autowired
+    private AccountRepository accountRepository;
 
     @GetMapping("/account")
     public ResponseEntity<List<Account>> getAll() {
         try {
-            List<Account> account = accountService.findAll();
+            List<Account> account = accountRepository.findAll();
+            for (Account acc : account) {
+                System.out.println(acc.toString());
+            }
             return new ResponseEntity<>(account, HttpStatus.OK);
         } catch (DataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,6 +56,7 @@ public class AccountController {
     public ResponseEntity<Account> loadOne(@PathVariable int id){
         try{
             Account account = accountService.getById(id);
+            System.out.println(account.toString());
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
