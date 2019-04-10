@@ -15,13 +15,10 @@ public class AccountController {
     @Autowired
     private AccountSerivce accountService;
 
-    @Autowired
-    private AccountRepository accountRepository;
-
     @GetMapping("/account")
     public ResponseEntity<List<Account>> getAll() {
         try {
-            List<Account> account = accountRepository.findAll();
+            List<Account> account = accountService.findAll();
             for (Account acc : account) {
                 System.out.println(acc.toString());
             }
