@@ -41,9 +41,10 @@ public class AccountController {
     @PostMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
-           Account acc = accountService.getById(account.getId());
+
+           Account acc = accountService.update(account.getId(), account);
             System.out.println(acc);
-            return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
+           return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
