@@ -2,6 +2,7 @@ package no.noroff.property.valuation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import no.noroff.property.property.Property;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

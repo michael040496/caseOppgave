@@ -1,5 +1,7 @@
 package no.noroff.property.property;
 import lombok.Data;
+import no.noroff.property.property.property_status.PropertyStatus;
+import no.noroff.property.property.property_type.PropertyType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,6 +46,9 @@ public class Property implements Serializable {
 
     @Column(name = "property_type_id")
     private int property_type_id;
+
+
+
 
     public Property() {
 
