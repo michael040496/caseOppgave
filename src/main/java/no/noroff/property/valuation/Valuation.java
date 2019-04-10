@@ -33,7 +33,7 @@ public class Valuation {
     @ManyToOne
     @JoinTable(name = "property",
             joinColumns = {@JoinColumn(name = "property_id")},
-            inverseJoinColumns = {@JoinColumn(name =  "property_id")})
+            inverseJoinColumns = {@JoinColumn(name =  "property.property_id")})
     private Property property;
 
 
