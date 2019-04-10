@@ -9,9 +9,9 @@ import no.noroff.property.account.account_type.AccountType;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Embeddable
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
+@Entity
 @Table(name = "session")
 public class Session implements Serializable {
 
@@ -22,10 +22,6 @@ public class Session implements Serializable {
 
     @Column(name = "token")
     private String token;
-
-    @OneToOne()
-    @JoinColumn(name="account_id", nullable=false)
-    private Account account;
 
     public Session() {}
 

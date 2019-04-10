@@ -1,9 +1,11 @@
 package no.noroff.property.owner.ownership_log;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OwnershipLogServiceImpl implements OwnershipLogService {
     @Autowired
     private OwnershipLogRepository ownershipLogRepository;

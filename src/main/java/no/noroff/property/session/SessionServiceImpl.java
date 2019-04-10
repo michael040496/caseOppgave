@@ -3,9 +3,11 @@ package no.noroff.property.session;
 import no.noroff.property.account.Account;
 import no.noroff.property.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SessionServiceImpl implements SessionService{
     @Autowired
     private SessionRepository sessionRepository;
