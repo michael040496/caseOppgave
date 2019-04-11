@@ -25,4 +25,10 @@ public class PropertyServiceImpl implements PropertyService {
     public Property getPropertyById(int property_id) {
         return propertyRepository.getOne(property_id);
     }
+
+    @Override
+    public Property update(int id, Property property) {
+        property.setProperty_id(id);
+        return propertyRepository.save(property);
+    }
 }

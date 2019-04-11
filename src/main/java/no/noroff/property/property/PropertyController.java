@@ -1,5 +1,6 @@
 package no.noroff.property.property;
 
+import no.noroff.property.account.Account;
 import no.noroff.property.renovation.Renovation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -35,13 +36,25 @@ public class PropertyController {
         }
     }
 
-    @PostMapping("/property")
+    @PostMapping("/properties")
     public ResponseEntity<Property> addProperty(@RequestBody Property property){
         try{
             propertyService.createProperty(property);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         catch(DataAccessException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/properties/update")
+    public ResponseEntity<Property> update(@RequestBody Property property){
+        try{
+
+            Property p = propertyService.update(property.getProperty_id(), property);
+            System.out.println(p);
+            return new ResponseEntity<>(p, HttpStatus.ACCEPTED);
+        }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
