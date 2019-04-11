@@ -17,4 +17,8 @@ public class PropertyStatus implements Serializable {
 
     @Column(name = "property_status_name")
     private String property_status_name;
+
+    public PropertyStatus(){
+
+    }
 }

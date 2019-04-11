@@ -22,5 +22,9 @@ public class PropertyImage implements Serializable {
     @JoinColumn(name="property_id", nullable=false)
     private Property property;
 
+    public PropertyImage(){
+
+    }
+
 
 }

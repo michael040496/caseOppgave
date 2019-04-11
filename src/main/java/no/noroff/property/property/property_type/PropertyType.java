@@ -16,4 +16,8 @@ public class PropertyType implements Serializable {
 
     @Column(name = "property_type_name")
     private String property_type_name;
+
+    public PropertyType(){
+
+    }
 }
