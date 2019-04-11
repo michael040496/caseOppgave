@@ -1,4 +1,5 @@
 package no.noroff.property.property;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import no.noroff.property.property.property_image.PropertyImage;
 import no.noroff.property.property.property_status.PropertyStatus;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "property")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Property implements Serializable {
 
     @Id
