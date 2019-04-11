@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
-            "Contact API", "Task21", "1.0",
+            "Contact API", "Case", "1.0",
             "", "",
             "Back to Home", "");
     @Bean

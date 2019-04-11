@@ -1,11 +1,14 @@
 package no.noroff.property.property;
 import lombok.Data;
+import no.noroff.property.property.property_image.PropertyImage;
 import no.noroff.property.property.property_status.PropertyStatus;
 import no.noroff.property.property.property_type.PropertyType;
 
 import javax.persistence.*;
+import java.awt.print.Book;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Data
@@ -48,6 +51,11 @@ public class Property implements Serializable {
     @ManyToOne()
     @JoinColumn(name="property_type_id", nullable=false)
     private PropertyType propertyType;
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private Set<PropertyImage> propertyImages;
+
+
 
 
     public Property() {
