@@ -17,11 +17,11 @@ public class Valuation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int valuation_id;
 
-    @Column(name="comments")
-    private String comments;
+    @Column(name="valuation_comments")
+    private String valuation_comments;
 
-    @Column(name="value")
-    private int value;
+    @Column(name="valuation")
+    private int valuation;
 
     @Column(name="valuation_date")
     private LocalDateTime valuation_date;
