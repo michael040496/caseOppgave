@@ -1,8 +1,10 @@
 package no.noroff.property.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -24,13 +26,23 @@ public class AccountServiceImpl implements AccountSerivce{
     }
 
     @Override
-    public Account getById(int id) {
+    public Account getById(long id) {
         return accountRepository.getOne(id);
     }
 
     @Override
-    public Account update(int id, Account object) {
+    public Account update(long id, Account object) {
         object.setId(id);
         return accountRepository.save(object);
     }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Account loadUserByEmail(String email){
+        return null;
+    }
+
+
+
 }

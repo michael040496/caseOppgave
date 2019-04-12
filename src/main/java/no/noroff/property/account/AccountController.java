@@ -16,13 +16,18 @@ public class AccountController {
     @Autowired
     private AccountSerivce accountService;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
+
+
+
     @GetMapping("/account")
-    public ResponseEntity<List<Account>> getAll() {
+    public ResponseEntity<Account> getAll() {
         try {
-            List<Account> account = accountService.findAll();
-            for (Account acc : account) {
-                System.out.println(acc.toString());
-            }
+
+            Account account = accountRepository.findByEmail("damn@gmail.com");
+
             return new ResponseEntity<>(account, HttpStatus.OK);
         } catch (DataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

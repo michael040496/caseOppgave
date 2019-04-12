@@ -20,14 +20,15 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
-    private int id;
+    private Long id;
+
+    @Column(name = "surname")
+    private String surname;
 
 
     @Column(name = "account_name")
     private String name;
 
-    @Column(name = "surname")
-    private String surname;
 
     @Column(name = "phone")
     private String phone;
