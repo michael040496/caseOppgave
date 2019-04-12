@@ -7,7 +7,8 @@ import java.util.List;
 public interface AccountSerivce {
     List<Account> findAll();
     Account create(Account object);
-    Account update(int id, Account object);
-    Account getById(int id);
+    Account update(long id, Account object);
+    Account getById(long id);
+    Account loadUserByEmail(String email);
 
 }
