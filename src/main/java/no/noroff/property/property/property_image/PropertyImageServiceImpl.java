@@ -11,12 +11,8 @@ public class PropertyImageServiceImpl implements PropertyImageService {
 
 
     @Override
-    public PropertyImage createPropertyImage(PropertyImage propertyImage) {
-        return propertyImageRepository.save(propertyImage);
-    }
+    public PropertyImage createPropertyImage(PropertyImage propertyImage) {return propertyImageRepository.save(propertyImage);}
 
     @Override
-    public PropertyImage getPropertyImageById(int property_image_id) {
-        return propertyImageRepository.getOne(property_image_id);
-    }
+    public PropertyImage getPropertyImageById(int property_image_id) {return propertyImageRepository.getOne(property_image_id);}
 }

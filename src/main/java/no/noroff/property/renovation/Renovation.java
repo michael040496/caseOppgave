@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class Renovation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "renovation_id")
     private int renovation_id;
 
     @Column(name="description")
@@ -29,8 +30,6 @@ public class Renovation implements Serializable {
     @ManyToOne()
     @JoinColumn(name="property_id", nullable=false)
     private Property property;
-
-
 
 
     public Renovation(){

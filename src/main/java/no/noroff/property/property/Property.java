@@ -1,14 +1,19 @@
 package no.noroff.property.property;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import no.noroff.property.owner.ownership_log.OwnershipLog;
 import no.noroff.property.property.property_image.PropertyImage;
 import no.noroff.property.property.property_status.PropertyStatus;
 import no.noroff.property.property.property_type.PropertyType;
+import no.noroff.property.renovation.Renovation;
+import no.noroff.property.valuation.Valuation;
 
 import javax.persistence.*;
 import java.awt.print.Book;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,11 +59,21 @@ public class Property implements Serializable {
     @JoinColumn(name="property_type_id", nullable=false)
     private PropertyType propertyType;
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
-    private Set<PropertyImage> propertyImages;
+    @OneToMany
+    @JoinColumn(name = "property_id", referencedColumnName = "property_id")
+    private List<Renovation> renovations;
 
+    @OneToMany
+    @JoinColumn(name = "property_id", referencedColumnName = "property_id")
+    private List<PropertyImage> propertyImages;
 
+    @OneToMany
+    @JoinColumn(name = "property_id", referencedColumnName = "property_id")
+    private List<Valuation> valuations;
 
+    @OneToMany
+    @JoinColumn(name = "property_id", referencedColumnName = "property_id")
+    private List<OwnershipLog> ownershipLogs;
 
     public Property() {
 
