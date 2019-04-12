@@ -21,7 +21,7 @@ public class Valuation {
     private String valuation_comments;
 
     @Column(name="valuation")
-    private int valueation;
+    private int valuation;
 
     @Column(name="valuation_date")
     private LocalDateTime valuation_date;
