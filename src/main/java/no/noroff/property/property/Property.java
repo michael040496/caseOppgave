@@ -41,7 +41,7 @@ public class Property implements Serializable {
     private String city;
 
     @Column(name = "zip")
-    private int zip;
+    private String zip;
 
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
