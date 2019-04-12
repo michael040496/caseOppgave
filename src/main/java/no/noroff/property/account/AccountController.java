@@ -23,10 +23,10 @@ public class AccountController {
 
 
     @GetMapping("/account")
-    public ResponseEntity<Account> getAll() {
+    public ResponseEntity<List<Account>> getAll() {
         try {
 
-            Account account = accountRepository.findByEmail("damn@gmail.com");
+            List<Account> account = accountService.findAll();
 
             return new ResponseEntity<>(account, HttpStatus.OK);
         } catch (DataAccessException e) {
