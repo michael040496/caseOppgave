@@ -28,9 +28,9 @@ public class OwnershipLog implements Serializable {
     @Column(name="created_at")
     private LocalDateTime created_at;
 
-    /*@ManyToOne()
+    @ManyToOne()
     @JoinColumn(name="owner_id", nullable=false)
-    private PropertyOwner propertyOwner;*/
+    private PropertyOwner propertyOwner;
 
     @ManyToOne()
     @JoinColumn(name="property_id", nullable=false)
