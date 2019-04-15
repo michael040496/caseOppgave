@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class OwnershipLogController {
+
     @Autowired
     private OwnershipLogService ownershipLogService;
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import no.noroff.property.account.account_type.AccountType;
 import no.noroff.property.owner.owner_type.OwnerType;
+import no.noroff.property.property.Property;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,8 +19,8 @@ public class PropertyOwner implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int owner_id;
 
-    @Column(name="name")
-    private String name;
+    @Column(name="owner_name")
+    private String owner_name;
 
     @Column(name="surname")
     private String surname;
@@ -30,7 +31,7 @@ public class PropertyOwner implements Serializable {
     @Column(name="email")
     private String email;
 
-    @Column(name="date_of_birt")
+    @Column(name="date_of_birth")
     private LocalDateTime date_of_birth;
 
     @Column(name="d_number")
@@ -39,8 +40,9 @@ public class PropertyOwner implements Serializable {
     @Column(name="created_at")
     private LocalDateTime created_at;
 
-    @Column(name="owner_type_id")
-    private int owner_type_id;
+    @ManyToOne()
+    @JoinColumn(name="owner_type_id", nullable=false)
+    private OwnerType ownerType;
 
     public PropertyOwner(){
 
