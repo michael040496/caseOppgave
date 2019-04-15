@@ -2,9 +2,11 @@ package no.noroff.property.account;
 
 import no.noroff.property.account.account_type.AccountType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +18,22 @@ import java.util.Set;
 @Service
 public class AccountServiceImpl implements AccountSerivce{
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     @Override
     public List<Account> findAll() {
@@ -27,6 +42,7 @@ public class AccountServiceImpl implements AccountSerivce{
 
     @Override
     public Account create(Account object) {
+        object.setPassword(bCryptPasswordEncoder.encode(object.getPassword()));
         return accountRepository.save(object);
     }
 
@@ -46,8 +62,11 @@ public class AccountServiceImpl implements AccountSerivce{
     @Transactional(readOnly = true)
     public Account loadUserByEmail(String email){
         Account account = accountRepository.findByEmail(email);
-        if(account == null) throw new UsernameNotFoundException(email);
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        if(account == null) {
+            throw new UsernameNotFoundException(email);
+        }
+        System.out.println("Found user " + account);
+
 
         return null;
 

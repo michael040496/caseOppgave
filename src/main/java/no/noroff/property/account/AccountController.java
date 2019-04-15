@@ -67,6 +67,11 @@ public class AccountController {
         }
     }
 
+    @PostMapping("/login")
+    public Account login(@RequestBody String email, String password){
+        return null;
+    }
+
 
 
 }
