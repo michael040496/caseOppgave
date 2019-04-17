@@ -51,6 +51,12 @@ public class Property implements Serializable {
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
 
+    @Column(name = "longitude")
+    private double longitude;
+
+    @Column(name = "latitude")
+    private double latitude;
+
     @ManyToOne()
     @JoinColumn(name="status_id", nullable=false)
     private PropertyStatus propertyStatus;
