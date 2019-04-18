@@ -38,6 +38,7 @@ public class AccountServiceImpl implements AccountSerivce{
         return accountRepository.save(object);
     }
 
+
     @Transactional(readOnly = true)
     @Override
     public Account loadUserByEmail(String email) throws UsernameNotFoundException{
