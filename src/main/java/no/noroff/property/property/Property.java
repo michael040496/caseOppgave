@@ -65,7 +65,7 @@ public class Property implements Serializable {
     private int floor;
 
     @Column(name = "rooms")
-    private String rooms;
+    private int rooms;
 
 
     @ManyToOne()
