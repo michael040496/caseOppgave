@@ -55,6 +55,19 @@ public class Property implements Serializable {
     @Column(name = "latitude")
     private double latitude;
 
+    @Column(name = "built_at")
+    private String built_at;
+
+    @Column(name = "area")
+    private int area;
+
+    @Column(name = "floor")
+    private int floor;
+
+    @Column(name = "rooms")
+    private String rooms;
+
+
     @ManyToOne()
     @JoinColumn(name="status_id", nullable=false)
     private PropertyStatus propertyStatus;
