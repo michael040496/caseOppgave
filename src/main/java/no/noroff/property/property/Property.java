@@ -10,11 +10,9 @@ import no.noroff.property.renovation.Renovation;
 import no.noroff.property.valuation.Valuation;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
