@@ -48,9 +48,6 @@ public class AccountServiceImpl implements AccountSerivce{
         return accountRepository.save(object);
     }
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
 
     @Transactional(readOnly = true)
     @Override
