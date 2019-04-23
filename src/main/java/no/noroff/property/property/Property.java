@@ -10,11 +10,9 @@ import no.noroff.property.renovation.Renovation;
 import no.noroff.property.valuation.Valuation;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -50,6 +48,25 @@ public class Property implements Serializable {
 
     @Column(name = "created_at")
     private LocalDateTime created_at = LocalDateTime.now();
+
+    @Column(name = "longitude")
+    private double longitude;
+
+    @Column(name = "latitude")
+    private double latitude;
+
+    @Column(name = "built_at")
+    private String built_at;
+
+    @Column(name = "area")
+    private int area;
+
+    @Column(name = "floor")
+    private int floor;
+
+    @Column(name = "rooms")
+    private int rooms;
+
 
     @ManyToOne()
     @JoinColumn(name="status_id", nullable=false)

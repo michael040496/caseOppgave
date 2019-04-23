@@ -35,7 +35,7 @@ public class PropertyOwner implements Serializable {
     private LocalDateTime date_of_birth;
 
     @Column(name="d_number")
-    private int d_number;
+    private String d_number;
 
     @Column(name="created_at")
     private LocalDateTime created_at;

@@ -12,8 +12,7 @@ public class PropertyServiceImpl implements PropertyService {
     private PropertyRepository propertyRepository;
 
     @Override
-    public List<Property> findAll() {
-        return propertyRepository.findAll();
+    public List<Property> findAll() {return propertyRepository.findAll();
     }
 
     @Override
