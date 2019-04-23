@@ -32,10 +32,6 @@ public class OwnershipLog implements Serializable {
     @JoinColumn(name="owner_id", nullable=false)
     private PropertyOwner propertyOwner;
 
-    @ManyToOne()
-    @JoinColumn(name="property_id", nullable=false)
-    private Property property;
-
     public OwnershipLog(){
 
     }
