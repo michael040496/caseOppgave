@@ -29,11 +29,6 @@ public class Valuation implements Serializable {
     @Column(name="valuation_date")
     private LocalDateTime valuation_date;
 
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name="property_id", nullable=false)
-    private Property property;
-
     public Valuation(){
 
     }
