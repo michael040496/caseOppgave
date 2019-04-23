@@ -20,4 +20,5 @@ public class AccountTypeServiceImpl implements AccountTypeService {
         return accountTypeRepository.findAll();
     }
 
+
 }

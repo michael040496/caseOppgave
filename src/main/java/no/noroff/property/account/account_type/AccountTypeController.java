@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
+@RolesAllowed("ROLE_BUYER")
 @RestController
 @CrossOrigin(origins = "*")
 public class AccountTypeController {

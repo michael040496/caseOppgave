@@ -4,8 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +21,8 @@ public class AccountController {
     @Autowired
     private AccountSerivce accountService;
 
-
+    @Autowired
+    AuthenticationManager authenticationManager;
 
 
     @GetMapping("/account")
@@ -58,17 +64,6 @@ public class AccountController {
     public ResponseEntity<Account> loadOne(@PathVariable int id){
         try{
             Account account = accountService.getById(id);
-            System.out.println(account.toString());
-            return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
-        }catch(DataAccessException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PostMapping("/account/login")
-    public ResponseEntity<Account> login(@RequestBody String email){
-        try{
-            Account account = accountService.loadUserByEmail(email);
             System.out.println(account.toString());
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){

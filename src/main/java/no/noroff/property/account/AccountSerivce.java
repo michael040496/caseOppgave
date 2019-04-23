@@ -9,6 +9,5 @@ public interface AccountSerivce {
     Account create(Account object);
     Account update(long id, Account object);
     Account getById(long id);
-    Account loadUserByEmail(String email);
 
 }

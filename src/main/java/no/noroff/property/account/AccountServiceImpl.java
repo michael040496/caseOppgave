@@ -49,18 +49,5 @@ public class AccountServiceImpl implements AccountSerivce{
     }
 
 
-    @Transactional(readOnly = true)
-    @Override
-    public Account loadUserByEmail(String email) throws UsernameNotFoundException{
-        Account account = accountRepository.findByEmail(email);
-        if(account == null) {
-            throw new UsernameNotFoundException("User not found!");
-        }
-        System.out.println("Found user " + account);
-        return account;
-
-    }
-
-
 
 }
