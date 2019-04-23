@@ -21,10 +21,6 @@ public class PropertyImage implements Serializable {
     @Column(name = "url")
     private String url;
 
-    @ManyToOne()
-    @JoinColumn(name="property_id", nullable=false)
-    private Property property;
-
     public PropertyImage(){
 
     }
