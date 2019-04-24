@@ -25,7 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -64,8 +64,11 @@ public class AuthController {
         // sends all info of user
         Optional<Account> acc = accountSerivce.getByUsernameOrEmail(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
 
+        acc.ifPresent(account -> {
+            account.getId();
+            account.getAccountType();
+        });
 
-        System.out.println(acc);
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, acc));
     }
