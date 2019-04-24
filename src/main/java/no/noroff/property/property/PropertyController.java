@@ -30,6 +30,7 @@ public class PropertyController {
                 prop.put("longitude", property.getLongitude());
                 prop.put("floor", property.getFloor());
                 prop.put("rooms", property.getRooms());;
+                prop.put("property_id", property.getProperty_id());
                 properties.add(prop);
             }
             return new ResponseEntity<>(properties, HttpStatus.OK);
