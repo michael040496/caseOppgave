@@ -1,9 +1,11 @@
 package no.noroff.property.account.ReqResForm;
 
+import lombok.Data;
 import no.noroff.property.account.Account;
 
 import java.util.Optional;
 
+@Data
 public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
