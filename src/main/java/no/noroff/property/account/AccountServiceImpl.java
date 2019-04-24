@@ -1,23 +1,10 @@
 package no.noroff.property.account;
 
-import no.noroff.property.account.account_type.AccountType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements AccountSerivce{
@@ -25,6 +12,11 @@ public class AccountServiceImpl implements AccountSerivce{
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Override
+    public Optional<Account> getByUsernameOrEmail(String username, String email) {
+        return accountRepository.findByUsernameOrEmail(username, email);
+    }
 
     @Override
     public List<Account> findAll() {

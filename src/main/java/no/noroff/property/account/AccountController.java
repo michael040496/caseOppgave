@@ -5,16 +5,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
-@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
+//@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
@@ -39,6 +35,21 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @GetMapping("/account/test")
+    public ResponseEntity<Optional<Account>> getByUsernameEmail(String username, String email) {
+        try {
+
+            Optional<Account> acc = accountService.getByUsernameOrEmail(username, "ok@gmail.com");
+
+
+            return new ResponseEntity<>(acc, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @PostMapping("/account/create")
     public ResponseEntity<Account> create(@RequestBody Account account){

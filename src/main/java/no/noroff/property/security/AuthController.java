@@ -2,14 +2,12 @@ package no.noroff.property.security;
 
 import no.noroff.property.account.Account;
 import no.noroff.property.account.AccountRepository;
+import no.noroff.property.account.AccountSerivce;
 import no.noroff.property.account.ReqResForm.ApiResponse;
 import no.noroff.property.account.ReqResForm.JwtAuthenticationResponse;
 import no.noroff.property.account.ReqResForm.LoginRequest;
 import no.noroff.property.account.ReqResForm.SignUpRequest;
-import no.noroff.property.account.account_type.AccountType;
 import no.noroff.property.account.account_type.AccountTypeRepository;
-import no.noroff.property.account.account_type.RoleName;
-import no.noroff.property.exceptions.AppException;
 import no.noroff.property.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -37,6 +36,9 @@ public class AuthController {
 
     @Autowired
     AccountRepository userRepository;
+
+    @Autowired
+    AccountSerivce accountSerivce;
 
     @Autowired
     AccountTypeRepository roleRepository;
@@ -59,8 +61,13 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        // sends all info of user
+        Optional<Account> acc = accountSerivce.getByUsernameOrEmail(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
+
+
+        System.out.println(acc);
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, acc));
     }
 
     @PostMapping("/signup")

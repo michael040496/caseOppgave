@@ -1,11 +1,18 @@
 package no.noroff.property.account.ReqResForm;
 
+import no.noroff.property.account.Account;
+
+import java.util.Optional;
+
 public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
+    private Optional<Account> account;
 
-    public JwtAuthenticationResponse(String accessToken) {
+    public JwtAuthenticationResponse(String accessToken, Optional<Account> account) {
         this.accessToken = accessToken;
+        this.account = account;
+
     }
 
     public String getAccessToken() {
