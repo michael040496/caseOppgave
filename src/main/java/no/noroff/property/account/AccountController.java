@@ -10,9 +10,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.List;
 
+@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
@@ -48,6 +50,8 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
     @PostMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
