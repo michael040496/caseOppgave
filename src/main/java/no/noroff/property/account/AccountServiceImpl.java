@@ -24,6 +24,11 @@ public class AccountServiceImpl implements AccountSerivce{
     }
 
     @Override
+    public Account getbyEmailOrUsername(String email, String username) {
+        return accountRepository.findByEmailOrUsername(username, email);
+    }
+
+    @Override
     public Account create(Account object) {
        // object.setPassword(bCryptPasswordEncoder.encode(object.getPassword()));
         return accountRepository.save(object);

@@ -61,16 +61,19 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // sends all info of user
-        Optional<Account> acc = accountSerivce.getByUsernameOrEmail(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
 
-        acc.ifPresent(account -> {
-            account.getId();
-            account.getAccountType();
-        });
+        Account acc = accountSerivce.getbyEmailOrUsername(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
+
+        HashMap<String, Object> accountDataMap = new HashMap<>();
+        accountDataMap.put("id", acc.getId());
+        accountDataMap.put("roletypeid", acc.getAccountTypeId());
+
+
+        // sends all info of user
+       // Optional<Account> acc = accountSerivce.getByUsernameOrEmail(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, acc));
+        return new ResponseEntity(new JwtAuthenticationResponse(jwt, accountDataMap), HttpStatus.OK);
     }
 
     @PostMapping("/signup")

@@ -9,5 +9,6 @@ public interface AccountSerivce {
     Account update(long id, Account object);
     Account getById(long id);
     Optional<Account> getByUsernameOrEmail(String username, String email);
+    Account getbyEmailOrUsername(String email, String username);
 
 }

@@ -1,21 +1,25 @@
 package no.noroff.property.account.ReqResForm;
 
 import lombok.Data;
-import no.noroff.property.account.Account;
 
-import java.util.Optional;
+import java.util.Map;
 
 @Data
 public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
-    private Optional<Account> account;
+    private Map<String, Object> account;
 
-    public JwtAuthenticationResponse(String accessToken, Optional<Account> account) {
+    public JwtAuthenticationResponse(String accessToken, Map<String, Object>account) {
         this.accessToken = accessToken;
         this.account = account;
 
     }
+
+    public JwtAuthenticationResponse() {
+
+    }
+
 
     public String getAccessToken() {
         return accessToken;
