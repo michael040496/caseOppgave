@@ -28,6 +28,8 @@ public class PropertyOwnerController {
         }
     }
 
+
+
     @PostMapping("/owner")
     public ResponseEntity<PropertyOwner> addOwner(@RequestBody PropertyOwner propertyOwner) {
         try{

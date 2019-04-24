@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,10 +18,23 @@ public class PropertyController {
     private PropertyService propertyService;
 
     @GetMapping("/properties")
-    public ResponseEntity<List<Property>> getAll() {
+    public ResponseEntity<List<Map<String, Object>>> getAll() {
         try {
-            List<Property> property = propertyService.findAll();
-            return new ResponseEntity<>(property, HttpStatus.OK);
+            List<Map<String, Object>> properties = new LinkedList<>();
+            for(Property property : propertyService.findAll()){
+                Map<String, Object> prop = new HashMap<>();
+                prop.put("images", property.getPropertyImages());
+                prop.put("property_name", property.getProperty_name());
+                prop.put("propertyType", property.getPropertyType());
+                prop.put("latitude", property.getLatitude());
+                prop.put("longitude", property.getLongitude());
+                prop.put("floor", property.getFloor());
+                prop.put("rooms", property.getRooms());;
+                properties.add(prop);
+            }
+            return new ResponseEntity<>(properties, HttpStatus.OK);
+            //List<Property> property = propertyService.findAll();
+
         } catch (DataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -60,4 +73,23 @@ public class PropertyController {
         }
     }
 
+    @GetMapping("/propertyBuyer")
+    public ResponseEntity<List<Property>> propertyBuyer() {
+        try {
+            List<Property> property = propertyService.findAll();
+            return new ResponseEntity<>(property, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/propertyAgent")
+    public ResponseEntity<List<Property>> propertyAgent() {
+        try {
+            List<Property> property = propertyService.findAll();
+            return new ResponseEntity<>(property, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
