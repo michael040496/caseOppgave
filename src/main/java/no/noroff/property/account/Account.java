@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
                 "email"
         })
 })
-@DynamicUpdate(true)
+@DynamicUpdate
 public class Account implements Serializable {
 
     @Id
