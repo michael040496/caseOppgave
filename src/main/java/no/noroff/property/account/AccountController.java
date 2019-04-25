@@ -1,5 +1,6 @@
 package no.noroff.property.account;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,9 @@ public class AccountController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
 
     @GetMapping("/account")
@@ -69,9 +74,11 @@ public class AccountController {
 
 
     @PostMapping("/account/update")
+    @RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
-           Account acc = accountService.update(account.getId(), account);
+
+            Account acc = accountService.update(account.getId(), account);
            return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -10,5 +10,6 @@ public interface AccountSerivce {
     Account getById(long id);
     Optional<Account> getByUsernameOrEmail(String username, String email);
     Account getbyEmailOrUsername(String email, String username);
+    Account save(Account acc);
 
 }

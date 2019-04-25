@@ -29,6 +29,11 @@ public class AccountServiceImpl implements AccountSerivce{
     }
 
     @Override
+    public Account save(Account acc) {
+        return accountRepository.save(acc);
+    }
+
+    @Override
     public Account create(Account object) {
        // object.setPassword(bCryptPasswordEncoder.encode(object.getPassword()));
         return accountRepository.save(object);
