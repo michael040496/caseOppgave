@@ -22,7 +22,9 @@ import java.time.LocalDateTime;
                 "email"
         })
 })
-@DynamicUpdate
+@org.hibernate.annotations.Entity(
+        dynamicUpdate = true
+)
 public class Account implements Serializable {
 
     @Id

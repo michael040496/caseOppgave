@@ -1,5 +1,8 @@
 package no.noroff.property.account;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -7,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 //@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
 @RestController
@@ -66,9 +71,7 @@ public class AccountController {
     @PostMapping("/account/update")
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
-
            Account acc = accountService.update(account.getId(), account);
-            System.out.println(acc);
            return new ResponseEntity<>(acc, HttpStatus.ACCEPTED);
         }catch(DataAccessException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -85,6 +88,7 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
 
 
 
