@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-@DynamicUpdate
+
 @Data
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
                 "email"
         })
 })
+@DynamicUpdate(true)
 public class Account implements Serializable {
 
     @Id
