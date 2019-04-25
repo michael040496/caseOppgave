@@ -61,8 +61,9 @@ public class PropertyController {
         }
     }
     //fetch for ROLE BUYER
+    //@GetMapping("/propertybuyer/{property_id}")
+  //  @RolesAllowed({"ROLE_BUYER"})
     @GetMapping("/propertybuyer/{property_id}")
-    @RolesAllowed({"ROLE_BUYER"})
     public ResponseEntity<?> propertyBuyer(@PathVariable int property_id) {
         try {
             Property property = propertyService.getPropertyById(property_id);
@@ -89,8 +90,9 @@ public class PropertyController {
 
 
     // fetch for role agent
+   // @GetMapping("/propertyagent/{property_id}")
+  //  @RolesAllowed({"ROLE_AGENT"})
     @GetMapping("/propertyagent/{property_id}")
-    @RolesAllowed({"ROLE_AGENT"})
     public ResponseEntity<?> propertyAgent(@PathVariable int property_id) {
         try {
             Property property = propertyService.getPropertyById(property_id);
