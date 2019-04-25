@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.*;
 
 @RestController
@@ -18,10 +20,10 @@ public class PropertyController {
     private PropertyService propertyService;
 
     @GetMapping("/properties")
-    public ResponseEntity<List<Map<String, Object>>> getAll() {
+    public ResponseEntity<List<Property>> getAll() {
         try {
-            List<Map<String, Object>> properties = new LinkedList<>();
-            for(Property property : propertyService.findAll()){
+            List<Property> properties = propertyService.findAll();
+            /*for(Property property : propertyService.findAll()){
                 Map<String, Object> prop = new HashMap<>();
                 prop.put("images", property.getPropertyImages());
                 prop.put("property_name", property.getProperty_name());
@@ -32,7 +34,7 @@ public class PropertyController {
                 prop.put("rooms", property.getRooms());;
                 prop.put("property_id", property.getProperty_id());
                 properties.add(prop);
-            }
+            }*/
             return new ResponseEntity<>(properties, HttpStatus.OK);
             //List<Property> property = propertyService.findAll();
 
@@ -40,13 +42,60 @@ public class PropertyController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
+    //fetch for guest
     @GetMapping("/properties/{property_id}")
-    public ResponseEntity<Property> loadOne(@PathVariable int property_id){
+    public ResponseEntity<?> loadOne(@PathVariable int property_id){
         try{
             Property property = propertyService.getPropertyById(property_id);
-            return new ResponseEntity<>(property, HttpStatus.ACCEPTED);
+            Map<String, Object> prop = new HashMap<>();
+            prop.put("images", property.getPropertyImages());
+            prop.put("property_name", property.getProperty_name());
+            prop.put("propertyType", property.getPropertyType());
+            prop.put("latitude", property.getLatitude());
+            prop.put("longitude", property.getLongitude());
+            prop.put("line_1", property.getLine_1());
+            prop.put("property_id", property.getProperty_id());
+            return new ResponseEntity<>(prop, HttpStatus.ACCEPTED);
         } catch (DataAccessException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    //fetch for ROLE BUYER
+    @GetMapping("/propertybuyer/{property_id}")
+    @RolesAllowed({"ROLE_BUYER"})
+    public ResponseEntity<?> propertyBuyer(@PathVariable int property_id) {
+        try {
+            Property property = propertyService.getPropertyById(property_id);
+            Map<String, Object> prop = new HashMap<>();
+            prop.put("images", property.getPropertyImages());
+            prop.put("property_name", property.getProperty_name());
+            prop.put("propertyType", property.getPropertyType());
+            prop.put("latitude", property.getLatitude());
+            prop.put("longitude", property.getLongitude());
+            prop.put("floor", property.getFloor());
+            prop.put("rooms", property.getRooms());;
+            prop.put("city", property.getCity());
+            prop.put("zip", property.getZip());
+            prop.put("area", property.getArea());
+            prop.put("build_at", property.getBuilt_at());
+            prop.put("renovations", property.getRenovations());
+
+
+            return new ResponseEntity<>(property, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    // fetch for role agent
+    @GetMapping("/propertyagent/{property_id}")
+    @RolesAllowed({"ROLE_AGENT"})
+    public ResponseEntity<?> propertyAgent(@PathVariable int property_id) {
+        try {
+            Property property = propertyService.getPropertyById(property_id);
+            return new ResponseEntity<>(property, HttpStatus.OK);
+        } catch (DataAccessException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -74,23 +123,6 @@ public class PropertyController {
         }
     }
 
-    @GetMapping("/propertyBuyer")
-    public ResponseEntity<List<Property>> propertyBuyer() {
-        try {
-            List<Property> property = propertyService.findAll();
-            return new ResponseEntity<>(property, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
 
-    @GetMapping("/propertyAgent")
-    public ResponseEntity<List<Property>> propertyAgent() {
-        try {
-            List<Property> property = propertyService.findAll();
-            return new ResponseEntity<>(property, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+
 }
