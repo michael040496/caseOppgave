@@ -1,9 +1,6 @@
 package no.noroff.property.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -12,14 +9,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 //@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
+//@CrossOrigin(origins = "*")
+@RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class AccountController {
 
@@ -74,7 +70,6 @@ public class AccountController {
 
 
     @PostMapping("/account/update")
-    @RolesAllowed({"ROLE_BUYER", "ROLE_AGENT"})
     public ResponseEntity<Account> update(@RequestBody Account account){
         try{
 

@@ -1,19 +1,17 @@
 package no.noroff.property.property;
 
-import no.noroff.property.account.Account;
-import no.noroff.property.renovation.Renovation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class PropertyController {
 
     @Autowired
