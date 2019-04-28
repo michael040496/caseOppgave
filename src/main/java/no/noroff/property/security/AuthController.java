@@ -15,17 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+
+import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -65,7 +65,7 @@ public class AuthController {
         Account acc = accountSerivce.getbyEmailOrUsername(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
 
         HashMap<String, Object> accountDataMap = new HashMap<>();
-        accountDataMap.put("id", acc.getId());
+        //accountDataMap.put("id", acc.getId());
         accountDataMap.put("roletypeid", acc.getAccountTypeId());
 
 
@@ -122,5 +122,11 @@ public class AuthController {
                 .buildAndExpand(result.getEmail()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity currentUser(@AuthenticationPrincipal AccountPrincipal userDetails){
+        Account accountInformation = accountSerivce.getById(userDetails.getId());
+        return ok(accountInformation);
     }
 }
