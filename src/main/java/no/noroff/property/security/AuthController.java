@@ -65,7 +65,7 @@ public class AuthController {
         Account acc = accountSerivce.getbyEmailOrUsername(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
 
         HashMap<String, Object> accountDataMap = new HashMap<>();
-        //accountDataMap.put("id", acc.getId());
+        accountDataMap.put("id", acc.getId());
         accountDataMap.put("roletypeid", acc.getAccountTypeId());
 
 
